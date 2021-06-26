@@ -1,0 +1,9 @@
+.board{
+    display: flex;
+}
+.col>div{
+    width: 20px;
+    height: 20px;
+    border: 1px solid blue;
+    padding: 3px;
+}

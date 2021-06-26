@@ -7,37 +7,48 @@ import CreateBoard from './CreateBoard';
 function Board({width, height, mines}) {
 
     const [grid, setGrid] = useState([]);
+    const [mineLocation, setMineLocation] = useState([]);
+    let flagCount=mines;
 
+    //create freshBoard
+    function freshBoard(){
+        let newBoard=CreateBoard(10, 10,10);
+        setGrid(newBoard.board);
+        setMineLocation(newBoard.mineLocation);
 
-//create freshBoard
+    }
     useEffect(()=>{
-        function freshBoard(){
-            const newBoard=CreateBoard(width, height,mines);
-            setGrid(newBoard);
-        }
         freshBoard();
-        console.log(grid);
     },[]);
 
-    const updateFlag=(e)=>{
-        e.preventDefault();
-        console.log("Right Click")
+    const updateFlag=()=>{
+        flagCount--;
     }
-
+    //gameOver
+    const gameOver=()=>{
+        console.log("game over");
+        revealAll();
+    }
+    //revealAll
+    const revealAll=()=>{
+   
+    }
     return(
-        <div>
-
+        <div className="board">
+            {
+            grid.map(singleRow =>{
+                return(
+                    <div className="col">{singleRow.map(singleCol=>{
+                        return <Square details={singleCol}
+                         updateFlag={updateFlag} 
+                        gameOver={gameOver}
+                        flagCount={flagCount}
+                        />
+                    })}
+                    </div>
+                )
+            })}
         </div>
-        // <div className="Board">
-        //     {grid.map(singleRow =>{
-        //         return(
-        //             <div>{singleRow.map(singleCol=>{
-        //                 return <Square details={singleCol} updateFlag={updateFlag}/>
-        //             })}
-        //             </div>
-        //         )
-        //     })}
-        // </div>
     )
 
 

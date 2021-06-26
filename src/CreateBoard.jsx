@@ -18,15 +18,15 @@ export default function CreateBoard (row, col, mines){
         }
         board.push(subCol);
     }
-
   //random mines
   function random(min=0, max){
         return Math.floor(Math.random()*(max-min+1)+min);
   }
 
   let mineCount=0;
+
   while(mineCount<mines){
-        //random colcation
+        //random location
         let x=random(0, row-1);
         let y=random(0,col-1);
         //place mine at location
@@ -45,37 +45,37 @@ export default function CreateBoard (row, col, mines){
               continue;
           }
           //top left
-          if(board[i-1][j-1].value==="x"){
+          if(i>0 && j>0 && board[i-1][j-1].value==="x"){
             board[i][j].value++;
           }
           //top
-          if(board[i][j-1].value==="x"){
+          if(j>0 && board[i][j-1].value==="x"){
             board[i][j].value++;
           }
           //top right
-          if(board[i+1][j-1].value==="x"){
+          if(i<row-1 && j>0 && board[i+1][j-1].value==="x"){
             board[i][j].value++;
 
           }
           //left
-          if(board[i-1][j].value==="x"){
+          if(i>0 && board[i-1][j].value==="x"){
             board[i][j].value++;          
          }
          //right
-         if(board[i+1][j].value==="x"){
+         if(i<row-1 &&board[i+1][j].value==="x"){
             board[i][j].value++;
 
          }
          //bottom left
-         if(board[i-1][j+1].value==="x"){
+         if(i>0 && j<col-1 && board[i-1][j+1].value==="x"){
             board[i][j].value++;
          }
          //bottom
-         if(board[i][j+1].value==="x"){
+         if( j<col-1 && board[i][j+1].value==="x"){
             board[i][j].value++;
          }
          //bottom right
-         if(board[i+1][j+1].value==="x"){
+         if(i<row-1 &&  j<col-1 && board[i+1][j+1].value==="x"){
             board[i][j].value++;
 
          }
