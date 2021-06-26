@@ -1,7 +1,11 @@
+html{
+    background-color: #121212;
+}
 .board{
     display: flex;
 }
 .col>div{
+    text-align: center;
     width: 20px;
     height: 20px;
     border: 1px solid blue;

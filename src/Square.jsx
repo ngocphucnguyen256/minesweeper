@@ -1,32 +1,38 @@
 import App from 'react';
 import React, {useState} from 'react'
+import flag from './flag.png'
 
-export default function Square({details, updateFlag,gameOver, flagCount}){
-    const [label, setLabel]= useState()
-    const handleClick=()=>{
-        setLabel(details.value);
-        if(details.value==="x"){
-            //gameOver
-            gameOver();
-        }
-        else{
-            details.isRevealed=true;
+export default function Square({details, updateFlag,revealSquare}){
+    let style
+    if(details.isRevealed && details.value===0){
+        style={
+            backgroundColor: '#0099cc'
         }
     }
-    const handleContextClick=(e)=>{
-        e.preventDefault();
-        if (flagCount>0){
-        setLabel("flag");
-        updateFlag();
-        }
-        else{
-            //no flag left
+    else if(details.isRevealed && details.value==="x"){
+        style={
+            backgroundColor: '#ff1a1a'
         }
     }
+    else if (!details.isRevealed && details.isFlagged===true){
+        style={
+            backgroundImage: `url(${flag})`,
+            backgroundSize: 'cover',
+            backgroundColor:'#ca994e'
+
+        }
+    }
+    else{
+        style={
+            backgroundColor:  '#e0e085'
+        }
+    }
+     
   
     return(
-        <div onClick={handleClick} onContextMenu={(e)=>handleContextClick(e)}>
-            {label}
+        <div style={style} onClick={()=>revealSquare(details.x, details.y)} 
+        onContextMenu={(e)=>updateFlag(e,details.x,details.y)}>
+            {details.isRevealed ? details.value===0? "":details.value: " "}
         </div>
     )
 
