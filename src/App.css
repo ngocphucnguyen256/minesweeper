@@ -1,21 +1,88 @@
 html{
-    background-color: #121212;
-    color: rgb(23, 117, 31);
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to top right,
+     #33ccff 0%, #b31463 100%);
+
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+body{
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+}
+h1{
+ font-size: 43px;
+ margin-bottom: 100px;
+}
+select,input,button,.flag-left,.winOrLose{
+    background: none;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 28px 28px rgba(0,0,0,0.7);
+    font-weight: 700;
+    font-size: 17px;
+    padding: 10px;
+}
+select{
+    width: 200px;
+    height: 50px;
+    font-size:17px;
+ 
+}
+input{
+    width: 200px;
+    margin: 5px;
+}
+::placeholder{
+    color: white;
+}
+button{
+
+
+}
+.start-button{
+    width:200px;
+    height: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.board-container{
+    display:flex;
+    justify-content:center;
 }
 .board{
     display: flex;
+    align-items: center;
 }
 .col>div{
-    text-align: center;
     width: 20px;
     height: 20px;
     border: 1px solid blue;
     padding: 3px;
 }
 .flag-left{
-    background-color: rgb(214, 76, 13);
-    color: white;
-    width: 40%;
-    text-align: center;
+    position: fixed;
+   left: 2%;
+   bottom: 2%;
+  
 
+
+}
+.play-again{
+    position: fixed;
+    right: 2%;
+    bottom:2%;
+}
+.winOrLose{
+    position: fixed;
+    bottom:2%;
+}
+
+.square{
+    color: black;
 }

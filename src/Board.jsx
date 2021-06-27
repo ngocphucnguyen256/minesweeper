@@ -63,7 +63,7 @@ function Board({width, height, mines}) {
                   newGrid[mineLocation[i][0]][mineLocation[i][1]].isRevealed=true;
               }
              setGameOver(true);
-             setWinOrLose("Click on mine");
+             setWinOrLose("Clicked on mine");
             setGrid(newGrid);
         }
         else{
@@ -98,7 +98,7 @@ function Board({width, height, mines}) {
             })}
            </div>
            <button className="play-again" onClick={freshBoard}>Play Again</button>
-           <div>{winOrLose}</div>
+           <div className="winOrLose">{winOrLose}</div>
         </div>
     )
 
