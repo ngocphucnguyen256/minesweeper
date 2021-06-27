@@ -23,6 +23,7 @@ function Board({width, height, mines}) {
         setMineLocation(newBoard.mineLocation);
         setNonMineCount(width*height-mines);
         setFlagLeft(mines);
+        setGameOver(false)
     }
     useEffect(()=>{
         freshBoard();
@@ -66,7 +67,7 @@ function Board({width, height, mines}) {
     return(
         <div className="board-container">
             <div className="flag-left">Flag left: {flagLeft}</div>
-            <button className="play-again" onClick={freshBoard}>Play Again</button>
+        
            <div className="board">
            {
             grid.map((singleRow,index1) =>{
@@ -87,6 +88,7 @@ function Board({width, height, mines}) {
                 )
             })}
            </div>
+           <button className="play-again" onClick={freshBoard}>Play Again</button>
         </div>
     )
 

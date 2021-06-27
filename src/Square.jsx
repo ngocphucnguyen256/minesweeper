@@ -31,7 +31,7 @@ export default function Square({details, updateFlag,revealSquare, gameOver}){
   
     return(
         <div
-         style={style} onClick={gameOver? false : ()=>revealSquare(details.x, details.y)} 
+         style={style} onClick={gameOver || details.isFlagged? false : ()=>revealSquare(details.x, details.y)} 
         onContextMenu={gameOver? false :(e)=>updateFlag(e,details.x,details.y)}>
             {details.isRevealed ? details.value===0? "":details.value: " "}
         </div>
