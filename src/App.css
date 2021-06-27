@@ -11,3 +11,10 @@ html{
     border: 1px solid blue;
     padding: 3px;
 }
+.flag-left{
+    background-color: rgb(214, 76, 13);
+    color: white;
+    width: 40%;
+    text-align: center;
+
+}

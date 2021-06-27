@@ -5,17 +5,23 @@ import CreateBoard from './CreateBoard';
 
 
 function Board({width, height, mines}) {
-
+     //test
+     width=10;
+     height=10;
+     mines=10;
     const [grid, setGrid] = useState([]);
     const [mineLocation, setMineLocation] = useState([]);
     const [nonMineCount, setNonMineCount] = useState(0);
+    const [flagLeft, setFlagLeft] = useState();
 
+   
     //create freshBoard
     function freshBoard(){
-        let newBoard=CreateBoard(10, 10,10);
+        let newBoard=CreateBoard(width, height,mines);
         setGrid(newBoard.board);
         setMineLocation(newBoard.mineLocation);
-        setNonMineCount(10*10-20);
+        setNonMineCount(width*height-mines);
+        setFlagLeft(mines);
     }
     useEffect(()=>{
         freshBoard();
@@ -24,10 +30,21 @@ function Board({width, height, mines}) {
 
     const updateFlag=(e,x,y)=>{
         e.preventDefault();
-        //deep copy
         let newGrid= JSON.parse(JSON.stringify(grid));
-        newGrid[x][y].isFlagged=true;
-        setGrid(newGrid);
+        if(0<flagLeft && grid[x][y].isFlagged===false){
+            setFlagLeft(prevFlagLeft=>prevFlagLeft-1);
+            console.log("+"+ newGrid[x][y].isFlagged)
+            newGrid[x][y].isFlagged=!grid[x][y].isFlagged;
+            setGrid(newGrid);
+        }
+        if(0<=flagLeft && grid[x][y].isFlagged===true){
+            setFlagLeft(prevFlagLeft=>prevFlagLeft+1);
+              console.log("-"+ newGrid[x][y].isFlagged)
+              newGrid[x][y].isFlagged=!grid[x][y].isFlagged;
+              setGrid(newGrid);
+        }
+    
+       
     }
 
     const revealSquare=(x,y)=>{
@@ -45,8 +62,10 @@ function Board({width, height, mines}) {
         }
     }
     return(
-        <div className="board">
-            {
+        <div className="board-container">
+            <div className="flag-left">Flag left: {flagLeft}</div>
+           <div className="board">
+           {
             grid.map((singleRow,index1) =>{
                 return(
                     <div className="col" key={index1}>
@@ -56,11 +75,13 @@ function Board({width, height, mines}) {
                         key={index2}
                          updateFlag={updateFlag} 
                         revealSquare={revealSquare}
+                        onContextMenu={updateFlag}
                         />
                     })}
                     </div>
                 )
             })}
+           </div>
         </div>
     )
 
