@@ -14,6 +14,7 @@ function Board({width, height, mines}) {
     const [nonMineCount, setNonMineCount] = useState(0);
     const [flagLeft, setFlagLeft] = useState();
     const [gameOver, setGameOver] = useState(false)
+    const [winOrLose, setWinOrLose] = useState();
 
    
     //create freshBoard
@@ -23,25 +24,30 @@ function Board({width, height, mines}) {
         setMineLocation(newBoard.mineLocation);
         setNonMineCount(width*height-mines);
         setFlagLeft(mines);
-        setGameOver(false)
+        setGameOver(false);
+        setWinOrLose();
     }
     useEffect(()=>{
         freshBoard();
     },[]);
 
+    //win or lose
+    useEffect(()=>{
+        if(nonMineCount===0 && flagLeft===0){
+            setWinOrLose("You win");
+        }
+    },[nonMineCount,flagLeft])
 
     const updateFlag=(e,x,y)=>{
         e.preventDefault();
         let newGrid= JSON.parse(JSON.stringify(grid));
         if(0<flagLeft && grid[x][y].isFlagged===false){
             setFlagLeft(prevFlagLeft=>prevFlagLeft-1);
-            console.log("+"+ newGrid[x][y].isFlagged)
             newGrid[x][y].isFlagged=!grid[x][y].isFlagged;
             setGrid(newGrid);
         }
         if(0<=flagLeft && grid[x][y].isFlagged===true){
             setFlagLeft(prevFlagLeft=>prevFlagLeft+1);
-              console.log("-"+ newGrid[x][y].isFlagged)
               newGrid[x][y].isFlagged=!grid[x][y].isFlagged;
               setGrid(newGrid);
         }
@@ -55,13 +61,15 @@ function Board({width, height, mines}) {
               for(let i=0; i<mineLocation.length; i++){
                   newGrid[mineLocation[i][0]][mineLocation[i][1]].isRevealed=true;
               }
-              setGameOver(true)
+             setGameOver(true);
+             setWinOrLose("Click on mine");
             setGrid(newGrid);
         }
         else{
             let revealedBoard = Reveal(newGrid, x,y,nonMineCount);
             setGrid(revealedBoard.arr);
             setNonMineCount(revealedBoard.newNonMines);
+            setFlagLeft(prevFlagLeft=>prevFlagLeft+revealedBoard.flagRestored);
         }
     }
     return(
@@ -89,6 +97,7 @@ function Board({width, height, mines}) {
             })}
            </div>
            <button className="play-again" onClick={freshBoard}>Play Again</button>
+           <div>{winOrLose}</div>
         </div>
     )
 
