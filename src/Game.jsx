@@ -2,9 +2,13 @@ import React,{useState, useEffect} from 'react'
 import Board  from './Board'
 
 function Game(){
-    const [width, setWidth]=useState();
-    const [height, setHeight]=useState();
-    const [mines, setMines]=useState();
+    //states
+    const [width, setWidth]=useState(9);
+    const [height, setHeight]=useState(9);
+    const [mines, setMines]=useState(10);
+
+
+    //define levels
     const level={
         1:{
             width: 9,
@@ -23,12 +27,12 @@ function Game(){
         }
     }
     
+    //select level
     const onChangeLevel=(value)=>{
             setWidth(level[value].width);
             setHeight(level[value].height);
             setMines(level[value].mines);
     }
-    
     const onChangeWidth=(value)=>{
         setWidth(value);
     }
@@ -58,10 +62,9 @@ function Game(){
                 <input type="number" placeholder="Mines" value={mines}
                  onChange={(e)=>onChangeMines(e.target.value)}/>
                 <button value="Clear" onClick={onClear}>Clear</button>
-            
-        </div>
-        <Board width={width} height={height} mines={mines}/>
 
+        </div>
+             <Board width={width} height={height} mines={mines}/>
         </div>
     )
 }

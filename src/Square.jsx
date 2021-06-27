@@ -1,4 +1,3 @@
-import App from 'react';
 import React, {useState} from 'react'
 import flag from './flag.png'
 

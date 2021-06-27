@@ -5,17 +5,12 @@ import CreateBoard from './CreateBoard';
 
 
 function Board({width, height, mines}) {
-     //test
-     width=10;
-     height=10;
-     mines=10;
     const [grid, setGrid] = useState([]);
     const [mineLocation, setMineLocation] = useState([]);
     const [nonMineCount, setNonMineCount] = useState(0);
     const [flagLeft, setFlagLeft] = useState();
     const [gameOver, setGameOver] = useState(false)
     const [winOrLose, setWinOrLose] = useState();
-
    
     //create freshBoard
     function freshBoard(){
@@ -27,10 +22,16 @@ function Board({width, height, mines}) {
         setGameOver(false);
         setWinOrLose();
     }
+
     useEffect(()=>{
         freshBoard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
-
+    useEffect(()=>{
+        freshBoard();
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[width, height, mines])
     //win or lose
     useEffect(()=>{
         if(nonMineCount===0 && flagLeft===0){
