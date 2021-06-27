@@ -57,7 +57,7 @@ function Game(){
                  onChange={(e)=>onChangeHeight(e.target.value)}/>
                 <input type="number" placeholder="Mines" value={mines}
                  onChange={(e)=>onChangeMines(e.target.value)}/>
-                <button value="Clear" onClick={onClear}/>
+                <button value="Clear" onClick={onClear}>Clear</button>
             
         </div>
         <Board width={width} height={height} mines={mines}/>

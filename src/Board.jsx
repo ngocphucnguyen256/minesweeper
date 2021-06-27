@@ -13,6 +13,7 @@ function Board({width, height, mines}) {
     const [mineLocation, setMineLocation] = useState([]);
     const [nonMineCount, setNonMineCount] = useState(0);
     const [flagLeft, setFlagLeft] = useState();
+    const [gameOver, setGameOver] = useState(false)
 
    
     //create freshBoard
@@ -53,6 +54,7 @@ function Board({width, height, mines}) {
               for(let i=0; i<mineLocation.length; i++){
                   newGrid[mineLocation[i][0]][mineLocation[i][1]].isRevealed=true;
               }
+              setGameOver(true)
             setGrid(newGrid);
         }
         else{
@@ -64,6 +66,7 @@ function Board({width, height, mines}) {
     return(
         <div className="board-container">
             <div className="flag-left">Flag left: {flagLeft}</div>
+            <button className="play-again" onClick={freshBoard}>Play Again</button>
            <div className="board">
            {
             grid.map((singleRow,index1) =>{
@@ -76,6 +79,8 @@ function Board({width, height, mines}) {
                          updateFlag={updateFlag} 
                         revealSquare={revealSquare}
                         onContextMenu={updateFlag}
+                        gameOver={gameOver}
+ 
                         />
                     })}
                     </div>

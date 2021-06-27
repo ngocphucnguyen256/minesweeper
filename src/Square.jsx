@@ -2,7 +2,7 @@ import App from 'react';
 import React, {useState} from 'react'
 import flag from './flag.png'
 
-export default function Square({details, updateFlag,revealSquare}){
+export default function Square({details, updateFlag,revealSquare, gameOver}){
     let style
     if(details.isRevealed && details.value===0){
         style={
@@ -30,8 +30,9 @@ export default function Square({details, updateFlag,revealSquare}){
      
   
     return(
-        <div style={style} onClick={()=>revealSquare(details.x, details.y)} 
-        onContextMenu={(e)=>updateFlag(e,details.x,details.y)}>
+        <div
+         style={style} onClick={gameOver? false : ()=>revealSquare(details.x, details.y)} 
+        onContextMenu={gameOver? false :(e)=>updateFlag(e,details.x,details.y)}>
             {details.isRevealed ? details.value===0? "":details.value: " "}
         </div>
     )
