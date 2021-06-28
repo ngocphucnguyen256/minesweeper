@@ -12,7 +12,7 @@ body{
     background: linear-gradient(to top right,
     #33ccff 0%, #b31463 100%);
    background-size: cover;
-   color: white;
+   color: rgb(232, 230, 227);
    font-family: Georgia, 'Times New Roman', Times, serif;
    text-align: center;
     background-repeat: no-repeat;
@@ -30,7 +30,7 @@ select,input,button,.flag-left,.winOrLose,.goTop{
     background: none;
     border: none;
     border-radius: 10px;
-    color: white;
+    color: rgb(232, 230, 227);
     box-shadow: 0 28px 28px rgba(0,0,0,0.4);
     font-weight: 700;
     font-size: 17px;
@@ -47,7 +47,7 @@ input{
     margin: 5px;
 }
 ::placeholder{
-    color: white;
+    color: rgb(232, 230, 227);
 }
 button{
     transition: all 0.5s ease;
@@ -105,4 +105,21 @@ button:hover{
     position: fixed;
     right: 2%;
     bottom: 2%;
+}
+@media screen and (max-width:470px){
+    .flag-left,.play-again,.goTop{
+        background-image: linear-gradient(
+            to right,
+            #29323c,
+            #485563,
+            #2b5876,
+            #4e4376
+          );
+          box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+          font-size: 0.6rem;
+    }
+    .col>div{
+        width:10px;
+        height:10px;
+    }
 }

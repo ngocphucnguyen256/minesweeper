@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Select} from 'antd';
 import Board from "./Board";
 import GoTop from './GoTop'
 function Game() {
@@ -82,6 +83,7 @@ function Game() {
             <option value="3">16x30, 99mines</option>
           </select>
           <h3>Or custom a game mode</h3>
+          <div className="custom-input-container">
           <input
             type="number"
             placeholder="Width"
@@ -97,6 +99,7 @@ function Game() {
             placeholder="Mines"
             onChange={(e) => onChangeInputMines(e.target.value)}
           />
+          </div>
           <button className="clear-button" type="reset" onClick={onClearClick}>
             Clear
           </button>
