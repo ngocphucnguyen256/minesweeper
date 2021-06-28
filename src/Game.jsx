@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {Select} from 'antd';
 import Board from "./Board";
 import GoTop from './GoTop'
 function Game() {
