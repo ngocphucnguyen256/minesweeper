@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
-import flag from './flag.png'
+import React from 'react'
+import flag from './flag.png';
+import mine from './mine.jpg';
 
 export default function Square({details, updateFlag,revealSquare, gameOver}){
     let style
@@ -10,6 +11,8 @@ export default function Square({details, updateFlag,revealSquare, gameOver}){
     }
     else if(details.isRevealed && details.value==="x"){
         style={
+            backgroundImage: `url(${mine})`,
+            backgroundSize: 'cover',
             backgroundColor: '#ff1a1a'
         }
     }
@@ -17,13 +20,18 @@ export default function Square({details, updateFlag,revealSquare, gameOver}){
         style={
             backgroundImage: `url(${flag})`,
             backgroundSize: 'cover',
-            backgroundColor:'#ca994e'
+      
 
+        }
+    }
+    else     if(!details.isRevealed && !details.isFlagged){
+        style={
+            backgroundColor:  '#ffff66'
         }
     }
     else{
         style={
-            backgroundColor:  '#e0e085'
+            backgroundColor:  '#66ff99'
         }
     }
      

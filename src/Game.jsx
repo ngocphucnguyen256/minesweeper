@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Board from "./Board";
-
+import GoTop from './GoTop'
 function Game() {
   //states
   const [width, setWidth] = useState();
@@ -81,7 +81,7 @@ function Game() {
             <option value="2">16x16, 40 mines</option>
             <option value="3">16x30, 99mines</option>
           </select>
-          <h3>Or custom game a mode</h3>
+          <h3>Or custom a game mode</h3>
           <input
             type="number"
             placeholder="Width"
@@ -97,7 +97,7 @@ function Game() {
             placeholder="Mines"
             onChange={(e) => onChangeInputMines(e.target.value)}
           />
-          <button type="reset" onClick={onClearClick}>
+          <button className="clear-button" type="reset" onClick={onClearClick}>
             Clear
           </button>
         </form>
@@ -108,6 +108,7 @@ function Game() {
       <div className="board-container">
       <Board width={width} height={height} mines={mines} />
       </div>
+      <GoTop/>
     </div>
   );
 }

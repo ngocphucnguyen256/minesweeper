@@ -35,7 +35,7 @@ function Board({width, height, mines}) {
     //win or lose
     useEffect(()=>{
         if(nonMineCount===0 && flagLeft===0){
-            setWinOrLose("You win");
+            setWinOrLose("You win!");
         }
     },[nonMineCount,flagLeft])
 
@@ -63,7 +63,7 @@ function Board({width, height, mines}) {
                   newGrid[mineLocation[i][0]][mineLocation[i][1]].isRevealed=true;
               }
              setGameOver(true);
-             setWinOrLose("Clicked on mine");
+             setWinOrLose("You clicked on mine!");
             setGrid(newGrid);
         }
         else{
