@@ -19,12 +19,12 @@ export default function Square({details, updateFlag,revealSquare, gameOver}){
     else if (!details.isRevealed && details.isFlagged===true){
         style={
             backgroundImage: `url(${flag})`,
-            backgroundSize: 'cover',
+            backgroundSize: 'cover'
       
 
         }
     }
-    else     if(!details.isRevealed && !details.isFlagged){
+    else if(!details.isRevealed && !details.isFlagged){
         style={
             backgroundColor:  '#ffff66'
         }
@@ -38,7 +38,7 @@ export default function Square({details, updateFlag,revealSquare, gameOver}){
   
     return(
         <div className="square"
-         style={style} onClick={gameOver || details.isFlagged? false : ()=>revealSquare(details.x, details.y)} 
+         style={style} onClick={gameOver || details.isFlagged? undefined : ()=>revealSquare(details.x, details.y)} 
         onContextMenu={gameOver || details.isRevealed? (e)=>e.preventDefault() :(e)=>updateFlag(e,details.x,details.y)}>
             {details.isRevealed ? details.value===0? "":details.value: " "}
         </div>
